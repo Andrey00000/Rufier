@@ -3,26 +3,33 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
 
 class Sc1(Screen):
     def __init__(self, *args, **kwargs):
         super().__init__ (*args, **kwargs)
-
+       
         box = BoxLayout(orientation = 'vertical')
-        box.add_widget(Label(text = 'Первый экран'))
-        b = Button(text= "Вперёд!", size_hint = (1, None), height='60sp' )
-        b.on_press =self.next
-        box.add_widget(b)
+        box.add_widget(Label(text = '''Данное приложение позволит вам с помощью теста Руфье
+        
+        '''))
+        b = Button(text= "Вперёд!", size_hint = (.5, None), height='60sp', pos_hint ={'left': 1} )
+        b.on_press = self.next
+        
         self.add_widget(box)
+        ti = TextInput(text= 'Введите имя', size_hint = (1, None), height='30sp',halign='left', focus=True, multiline=False)
+        box.add_widget(ti)
+        box.add_widget(b)
     def next(self, *args, **kwargs):
         self.manager.current = 'Sc2'
+       
 
 class Sc2(Screen):
     def __init__(self, *args, **kwargs):
         super().__init__ (*args, **kwargs)
         box = BoxLayout(orientation = 'vertical')
         box.add_widget(Label(text = 'Второй экран'))
-        b = Button(text= "Вперёд!", size_hint = (1, None), height='60sp', pos_hint =)
+        b = Button(text= "Вперёд!", size_hint = (1, None), height='60sp')
         b.on_press =self.next
         box.add_widget(b)
         self.add_widget(box)
@@ -72,3 +79,4 @@ class MyApp(App):
         return self.manager
 app = MyApp()
 app.run()
+        
